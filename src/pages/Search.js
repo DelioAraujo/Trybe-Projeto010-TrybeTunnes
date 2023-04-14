@@ -5,7 +5,6 @@ class Search extends React.Component {
   state = {
     pesquisa: '',
     botaoDesabilitado: true,
-    loading: false,
   };
 
   validacaoNome = () => {
