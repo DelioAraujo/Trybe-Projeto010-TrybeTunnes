@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 class MusicCard extends React.Component {
   render() {
     const { musicas } = this.props;
+
     const soMusicas = musicas.slice(1);
 
     return (
