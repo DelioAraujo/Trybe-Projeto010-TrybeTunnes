@@ -34,9 +34,9 @@ class Header extends React.Component {
           {nomeRecuperado}
         </h1>
         <nav>
-          <Link to="/Search" data-testid="link-to-search">Pesquisa</Link>
-          <Link to="/Favorites" data-testid="link-to-favorites">Favoritos</Link>
-          <Link to="/Profile" data-testid="link-to-profile">Perfil</Link>
+          <Link to="../pages/Search" data-testid="link-to-search">Pesquisa</Link>
+          <Link to="../pages/Favorites" data-testid="link-to-favorites">Favoritos</Link>
+          <Link to="../pages/Profile" data-testid="link-to-profile">Perfil</Link>
         </nav>
         {loading ? <Loading /> : null}
       </header>
