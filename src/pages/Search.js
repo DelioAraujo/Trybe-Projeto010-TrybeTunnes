@@ -85,8 +85,7 @@ class Search extends React.Component {
 
         {pesquisaIniciada ? (
           <h2>
-            Você pesquisou por:
-            {termoPesquisado}
+            {`Resultado de álbuns de: ${termoPesquisado} `}
           </h2>) : null}
 
         {loading ? <Loading /> : null}
