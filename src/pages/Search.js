@@ -1,10 +1,11 @@
 import React from 'react';
+import Header from '../meusComponentes/Header';
 
 class Search extends React.Component {
   render() {
     return (
       <div data-testid="page-search">
-        {/* Conteúdo do componente aqui */}
+        <Header />
       </div>
     );
   }
