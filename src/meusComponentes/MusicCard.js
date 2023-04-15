@@ -1,41 +1,65 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { addSong } from '../services/favoriteSongsAPI';
+import Loading from './Loading';
 
 class MusicCard extends React.Component {
-  render() {
-    const { musicas } = this.props;
+  state = {
+    loading: false,
+  };
 
-    const soMusicas = musicas.slice(1);
+  async handleCheckboxClick(musica) {
+    this.setState({
+      loading: true,
+    });
+
+    await addSong(musica);
+
+    this.setState({
+      loading: false,
+    });
+  }
+
+  render() {
+    const { musica } = this.props;
+
+    const { loading } = this.state;
 
     return (
       <div>
-        {soMusicas.map((musica) => (
+        {loading ? <Loading /> : (
           <div key={ musica.trackId }>
-
             <h3>{musica.trackName}</h3>
+
+            <label htmlFor={ `checkbox-music-${musica.trackId}` }>
+              Favorita
+              <input
+                type="checkbox"
+                id={ `checkbox-music-${musica.trackId}` }
+                data-testid={ `checkbox-music-${musica.trackId}` }
+                onChange={ () => this.handleCheckboxClick(musica) }
+              />
+            </label>
 
             <audio data-testid="audio-component" src={ musica.previewUrl } controls>
               <track kind="captions" />
               O seu navegador não suporta o elemento
-              {' '}
               <code>audio</code>
               .
             </audio>
           </div>
-        ))}
+        )}
       </div>
     );
   }
 }
 
 MusicCard.propTypes = {
-  musicas: PropTypes.arrayOf(
-    PropTypes.shape({
-      trackId: PropTypes.number.isRequired,
-      trackName: PropTypes.string.isRequired,
-      previewUrl: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
+  musica: PropTypes.shape({
+    trackId: PropTypes.number.isRequired,
+    trackName: PropTypes.string.isRequired,
+    previewUrl: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default MusicCard;

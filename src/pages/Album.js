@@ -32,6 +32,8 @@ class Album extends React.Component {
   render() {
     const { musicas, artiste, album } = this.state;
 
+    const soMusicas = musicas.slice(1);
+
     return (
       <div data-testid="page-album">
         <Header />
@@ -41,7 +43,9 @@ class Album extends React.Component {
         <h2 data-testid="album-name">
           { album }
         </h2>
-        <MusicCard musicas={ musicas } />
+        {soMusicas.map((musica) => (
+          <MusicCard key={ musica.trackId } musica={ musica } />
+        ))}
       </div>
     );
   }
