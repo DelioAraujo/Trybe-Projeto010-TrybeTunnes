@@ -6,11 +6,15 @@ import Loading from './Loading';
 class MusicCard extends React.Component {
   state = {
     loading: false,
+    checked: false,
   };
 
   async handleCheckboxClick(musica) {
+    const { checked } = this.state;
+
     this.setState({
       loading: true,
+      checked: !checked,
     });
 
     await addSong(musica);
@@ -23,7 +27,7 @@ class MusicCard extends React.Component {
   render() {
     const { musica } = this.props;
 
-    const { loading } = this.state;
+    const { loading, checked } = this.state;
 
     return (
       <div>
@@ -38,6 +42,7 @@ class MusicCard extends React.Component {
                 id={ `checkbox-music-${musica.trackId}` }
                 data-testid={ `checkbox-music-${musica.trackId}` }
                 onChange={ () => this.handleCheckboxClick(musica) }
+                checked={ checked }
               />
             </label>
 
