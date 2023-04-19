@@ -9,6 +9,15 @@ class MusicCard extends React.Component {
     checked: false,
   };
 
+  componentDidMount() {
+    const { musica, listaDeFavoritas } = this.props;
+
+    const isFavorita = this.isFavorita(musica, listaDeFavoritas);
+    if (isFavorita) {
+      this.setState({ checked: true });
+    }
+  }
+
   async handleCheckboxClick(musica) {
     const { checked } = this.state;
 
@@ -65,6 +74,11 @@ MusicCard.propTypes = {
     trackName: PropTypes.string.isRequired,
     previewUrl: PropTypes.string.isRequired,
   }).isRequired,
+  listaDeFavoritas: PropTypes.arrayOf(PropTypes.shape({
+    trackId: PropTypes.number.isRequired,
+    trackName: PropTypes.string.isRequired,
+    previewUrl: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 export default MusicCard;
